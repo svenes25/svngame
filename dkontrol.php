@@ -1,0 +1,33 @@
+<?php
+	include("baglan.php");
+	ob_start();
+	session_start();
+	$sql="select * from manav";
+	$result=mysqli_query($baglanti,$sql); 
+	$count=mysqli_num_rows($result);
+	$sayac=0;
+	$bool=False;
+	if($count)
+	{
+		while($row=mysqli_fetch_assoc($result))
+		{
+			if($_SESSION["kullanici"]==$row["kullanici_adi"])
+			{	
+				$bool=True;
+				header("Location:dükkanlarım.php");
+				ob_end_flush();
+			}
+			$sayac++;
+		}	
+	}
+	else if($sayac==0)
+	{
+		header("Location:dilk.php");
+		ob_end_flush();
+	}
+	if($bool==False)
+	{
+		header("Location:dilk.php");
+		ob_end_flush();
+	}
+?>

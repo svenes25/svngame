@@ -1,0 +1,11 @@
+<?php
+session_start();
+if($_SESSION["kullanici"]==NULL)
+{
+header("Location:hatasayfasi.php");
+}
+include("baglan.php");
+session_unset();
+session_destroy();
+header("Location:index.php");
+?>
